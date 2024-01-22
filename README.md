@@ -11,14 +11,13 @@ To execute Python codes from the command line:
      - On Windows, open "Command Prompt" or "PowerShell".
      - On Unix systems (Linux, macOS), open the "Terminal". 
   2.  Navigate to the Code Directory:
-     - Use the cd command to change to the directory where the code is located.
+      - Use the cd command to change to the directory where the code is located.
   4.  Run the code:
-     - Use the python3 command followed by the name of the Python file.
-      
-      <pre>
-        python3 file_name.py
-      </pre>
-  5. Specific Instructions for Each Code
+      - Use the python3 command followed by the name of the Python file.
+        
+            python3 file_name.py
+
+  6. Specific Instructions for Each Code
      - Fast Modular Exponentiation
        - Run the **_FME_Algorithm.py_** file.
        - Input the values of p and g when prompted.
@@ -35,6 +34,7 @@ To execute Python codes from the command line:
        - Run the **_Decrypt.py_** file.
        - Input the values of p, x (private key 1), y (private key 2), and the (c1, c2) pairs when prompted.
 
-          > **Tip:** You can use the prime number p = 281 and its primitive root g = 3 to start.
+> [!TIP]
+> You can use the prime number p = 281 and its primitive root g = 3 to start.
 
 Good luck! 
