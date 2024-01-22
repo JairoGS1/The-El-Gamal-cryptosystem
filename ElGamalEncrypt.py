@@ -1,7 +1,7 @@
 import random
 
 def elgamal_encrypt(p, g, gx, text):
-    text2int = text_integer(text)
+    text2int = text_to_integer(text)
     print(text2int)
     a = random.randint(1, p-1)
     ga = pow(g, a)
@@ -11,19 +11,19 @@ def elgamal_encrypt(p, g, gx, text):
         result += [(k * char) % p]
     return ga, result
 
-def text_integer(text):
+def text_to_integer(text):
     integers = []
     for char in text:
         integers += [ord(char)]
     return integers
 
-p = int(input("Entra el valor de p: "))
-g = int(input("Entra el valor de g: "))
-gx = int(input("Entra el valor de gx (clau pública): "))
-plaintext = input("Introdueix el text a encriptar (UTF-8): ")
+p = int(input("Enter the value of p: "))
+g = int(input("Enter the value of g: "))
+gx = int(input("Enter the value of gx (public key): "))
+plaintext = input("Enter the text to encrypt (UTF-8): ")
 
 public_key, ciphertext = elgamal_encrypt(p, g, gx, plaintext)
-print(f"\nClau pública (gy): {public_key}")
-print("Missatge encriptat:")
+print(f"\nPublic Key (gy): {public_key}")
+print("Encrypted Message:")
 for pair in ciphertext:
     print(f"({public_key}, {pair})")
