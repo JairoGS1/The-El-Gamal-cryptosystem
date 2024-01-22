@@ -2,7 +2,6 @@ import random
 
 def elgamal_encrypt(p, g, gx, text):
     text2int = text_to_integer(text)
-    print(text2int)
     a = random.randint(1, p-1)
     ga = pow(g, a)
     k = pow(gx, a)
