@@ -16,19 +16,25 @@ To execute Python codes from the command line:
      - Use the python3 command followed by the name of the Python file.
       
       <pre>
-        python file_name.py
+        python3 file_name.py
       </pre>
   5. Specific Instructions for Each Code
      - Fast Modular Exponentiation
-       - Run the **__fast_modular_exponentiation.py_** file.
+       - Run the **_FME_Algorithm.py_** file.
        - Input the values of p and g when prompted.
-     - Raíz Primitiva
-       - Run the **_primitive_root.py_** file.
-       - Input the values of p and g when prompted.
+     - Primitive Root
+       - Run the **_Primitive.py_** file.
+       - Input the values of p (prime number) and g (supposed primitive root) when prompted.
      - ElGamal Encrypting Module
-       - Run the **_elgamal_encrypt.py_** file.
-       - Input the values of p, g, gx, and the UTF-8 text when prompted.
-     - ElGamal Decryption Module
-       - Run the **_elgamal_decrypt.py_** file.
-       - Input the values of p, x, y, and the (c1, c2) pairs when prompted.
+       - Run the **_Encrypt.py_** file.
+       - Input the values of p, g, gx (g^x where x is private key), and the UTF-8 text when prompted.
 
+         > **Warning:** It is necessary that _p_ be larger than 130. For example, the prime number 281.
+
+     - ElGamal Decryption Module
+       - Run the **_Decrypt.py_** file.
+       - Input the values of p, x (private key 1), y (private key 2), and the (c1, c2) pairs when prompted.
+
+          > **Tip:** You can use the prime number p = 281 and its primitive root g = 3 to start.
+
+Good luck! 
