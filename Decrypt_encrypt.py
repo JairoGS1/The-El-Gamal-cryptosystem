@@ -38,4 +38,4 @@ print("Missatge encriptat:")
 for pair in ciphertext:
     print(f"({public_key}, {pair})")
 
-print(Decrypt(p, x, elgamal_encrypt(p, g, gx, plaintext)))
+print(Decrypt(p, x, ciphertext))
