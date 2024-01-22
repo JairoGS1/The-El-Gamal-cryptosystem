@@ -1,33 +1,33 @@
 import random
 
-def Decrypt(p, x, ciphertext):
+def decrypt(p, x, ciphertext):
     ga, cipher = ciphertext
     k = pow(ga, x)
     inv_k = pow(k, -1, p)
-    decripted_char = []
+    decrypted_chars = []
     print(cipher)
     for char in cipher:
-        decripted_char += [chr((char * inv_k) % p)] 
-    decrypted_message = ''.join(decripted_char)
+        decrypted_chars += [chr((char * inv_k) % p)] 
+    decrypted_message = ''.join(decrypted_chars)
     return decrypted_message
 
-p = int(input("Entra el valor de p: "))
-x = int(input("Entra el valor de x (clau privada): "))
+p = int(input("Enter the value of p: "))
+x = int(input("Enter the value of x (private key): "))
 
-# Introdueix el missatge encriptat amb elgamal_encrypt
-y = int(input("Entra el valor de y (clau pública): "))
+# Enter the encrypted message obtained from elgamal_encrypt
+y = int(input("Enter the value of y (public key): "))
 ciphertext_pairs = []
 
 while True:
     try:
-        c2 = int(input("Entra el valor de c2 (0 per acabar): "))
+        c2 = int(input("Enter the value of c2 (0 to finish): "))
         if c2 == 0:
             break
-        ciphertext_pairs.append((c2))
+        ciphertext_pairs.append(c2)
     except ValueError:
-        print("Si us plau, introdueix nombres enters.")
+        print("Please enter integer values.")
 
 ciphertext = (y, ciphertext_pairs)
 
-decrypted_message = Decrypt(p, x, ciphertext)
-print(f"\nMissatge desencriptat: {decrypted_message}")
+decrypted_message = decrypt(p, x, ciphertext)
+print(f"\nDecrypted Message: {decrypted_message}")
