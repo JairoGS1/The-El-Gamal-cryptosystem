@@ -5,7 +5,6 @@ def decrypt(p, x, ciphertext):
     k = pow(ga, x)
     inv_k = pow(k, -1, p)
     decrypted_chars = []
-    print(cipher)
     for char in cipher:
         decrypted_chars += [chr((char * inv_k) % p)] 
     decrypted_message = ''.join(decrypted_chars)
