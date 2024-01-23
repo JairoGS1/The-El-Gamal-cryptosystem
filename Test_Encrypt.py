@@ -1,4 +1,4 @@
-from Encrypt_Decrypt import *
+from Decrypt_encrypt import *
 
 def true_proof():
     p = 82589933
