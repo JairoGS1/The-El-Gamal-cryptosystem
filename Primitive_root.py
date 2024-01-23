@@ -49,10 +49,11 @@ def order_g(g, p):
             current_g = (current_g * g) % p
     return p - 1
 
-p = input_prime("Enter a prime number for p: ")
-g = input_coprime(f"Enter the value of g (coprime with {p}): ", p)
-
-if is_primitive_root(g, p):
-    print(f"{g} is a primitive root modulo {p}.")
-else:
-    print(f"{g} is not a primitive root modulo {p}. Please try again.")
+if __name__=='__main__':
+    p = input_prime("Enter a prime number for p: ")
+    g = input_coprime(f"Enter the value of g (coprime with {p}): ", p)
+    
+    if is_primitive_root(g, p):
+        print(f"{g} is a primitive root modulo {p}.")
+    else:
+        print(f"{g} is not a primitive root modulo {p}. Please try again.")
