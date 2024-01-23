@@ -97,7 +97,7 @@ def group_list(lst, n):
     grouped_list = []
     while len(lst) % n != 0:
         lst.append(0)
-    for i in range(0, len(lst), n):
+    for i in range(0, len(lst), n): 
         group = lst[i:i+n]
         grouped_list.append(int(''.join(map(str, group))))
     return grouped_list
@@ -126,37 +126,55 @@ def encrypt_list(p, g, x, a, int_list):
         encrypted_values.append(c)
     return encrypted_values
 
+def separate_characters(decrypt_mess):
+    char_list = []
+    int_list = []
+    for i in decrypt_mess:
+        int_list.append(i)
+        integer = int("".join(map(str,int_list)))
+        if int(integer > 30):
+            char_list.append(integer)
+            int_list = []
+    return char_list
+
+
 def decrypt_list(p, x, ga, encrypted_values, n):
     decrypted_values = []
     for c in encrypted_values:
         decrypted_message = elgamal_decrypt(p, x, ga, c)
         decrypted_digits = [int(d) for d in str(decrypted_message).zfill(n)]
-        decrypted_values.extend(decrypted_digits)
-    return decrypted_values
+        decrypted_characters = separate_characters(decrypted_digits)
+        decrypted_values.extend(decrypted_characters)
+        result = ''.join(map(chr, decrypted_values))
+    return result
 
-# Inputs
-p = input_prime("Enter the value of p (prime): ")
-g = input_primitive_root("Enter the value of g (primitive root mod p): ", p)
-b =input_in_range("Enter a number between 1 and p-1: ", p)
-text = input_ascii_string("Enter the plaintext message (ascii): ")
 
-utf8_encoded = text.encode('utf-8')
-plaintext=[int(byte) for byte in utf8_encoded]
+if __name__=='__main__':
+    # Inputs
+    p = input_prime("Enter the value of p (prime): ")
+    g = input_primitive_root("Enter the value of g (primitive root mod p): ", p)
+    b =input_in_range("Enter a number between 1 and p-1 (secret key b): ", p)
+    text = input_ascii_string("Enter the plaintext message (ascii): ")
 
-#Generate public and privte key
-a = generate_private_key(p)
-ga = calculate_public_key(g, a, p)
+    utf8_encoded = text.encode('utf-8')
+    plaintext=[int(byte) for byte in utf8_encoded]
 
-#Obtain the split string
-n = input_integer("Enter the value of n where n is the string length: ")
-text_list=group_list(plaintext,n)
+    #Generate public and privte key
+    a = random.randint(1, p-2)
+    ga = calculate_public_key(g, a, p)
 
-# Encryption
-encrypted_values=encrypt_list(p,g,b,a,text_list)
+    #Obtain the split string
+    n = input_integer("Enter the value of n where n is the string length: ")
+    text_list=group_list(plaintext,n)
+    print("texto junto: ", text_list)
+    
+    # Encryption
+    encrypted_values=encrypt_list(p,g,b,a,text_list)
 
-# Decryption
-decrypted_message = decrypt_list(p, b, ga, encrypted_values, n)
+    # Decryption
+    print("valores encriptados: ",encrypted_values)
+    decrypted_message = decrypt_list(p, b, ga, encrypted_values, n)
 
-# Output
-print(f"Encrypted message: (ga={ga}, c={encrypted_values})")
-print(f"Decrypted message: {decrypted_message}")
+    # Output
+    print(f"Encrypted message: (ga={ga}, c={encrypted_values})")
+    print(f"Decrypted message: {decrypted_message}")
