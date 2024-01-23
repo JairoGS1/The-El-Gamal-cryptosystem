@@ -1,6 +1,7 @@
 import time
 import math
 
+# Function to check if a number is prime
 def is_prime(n):
     if n < 2:
         return False
@@ -9,9 +10,11 @@ def is_prime(n):
             return False
     return True
 
+# Function to check if a number is in Z/pZ
 def is_in_zpz(g, p):
     return 0 < g < p
 
+# Function to input a prime number with error handling
 def input_prime(prompt):
     while True:
         try:
@@ -23,6 +26,7 @@ def input_prime(prompt):
         except ValueError as e:
             print(f"Error: {e} Please enter a prime number.")
 
+# Function to input a value in Z/pZ with error handling
 def input_in_zpz(prompt, p):
     while True:
         try:
@@ -34,14 +38,14 @@ def input_in_zpz(prompt, p):
         except ValueError as e:
             print(f"Error: {e} Please enter a value in Z/{p}Z.")
 
-#Bad solution O(e)
+# Bad solution for modular exponentiation (O(e) time complexity)
 def fast_modular_exponentiation(g, e, p):
   result = g
   for exp in range(e-1):
     result = (result*g) % p
   return result
 
-# Time complexity: O(log(e))
+# Efficient solution for modular exponentiation using binary exponentiation (O(log(e) time complexity)
 def fast_modular_exponentiation_update(g, e, p):
     result = 1
     # Convert the exponent to binary
@@ -58,6 +62,7 @@ if __name__=='__main__':
     g = input_in_zpz("Enter the value of g (in Z/pZ): ", p)
     e = input_prime("Enter the value of e (prime): ")
     
+    # Measure the execution time of the inefficient modular exponentiation
     inici_temps2 = time.time()
     resultat2 = fast_modular_exponentiation_update(g, e, p)
     fi_temps2 = time.time()
@@ -65,6 +70,7 @@ if __name__=='__main__':
     print(f"The result2 {g}^{e} (mod {p}) is: {resultat2}")
     print(f"Execution time2: {temps_total2} seconds")
     
+    # Measure the execution time of the efficient modular exponentiation
     inici_temps = time.time()
     resultat = fast_modular_exponentiation(g, e, p)
     fi_temps = time.time()
