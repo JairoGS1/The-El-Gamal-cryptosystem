@@ -53,21 +53,22 @@ def fast_modular_exponentiation_update(g, e, p):
         g = (g * g) % p
     return result
 
-p = input_prime("Enter the value of p (prime): ")
-g = input_in_zpz("Enter the value of g (in Z/pZ): ", p)
-e = input_prime("Enter the value of e (prime): ")
-
-inici_temps2 = time.time()
-resultat2 = fast_modular_exponentiation_update(g, e, p)
-fi_temps2 = time.time()
-temps_total2 = fi_temps2 - inici_temps2
-print(f"The result2 {g}^{e} (mod {p}) is: {resultat2}")
-print(f"Execution time2: {temps_total2} seconds")
-
-inici_temps = time.time()
-resultat = fast_modular_exponentiation(g, e, p)
-fi_temps = time.time()
-temps_total = fi_temps - inici_temps
-print(f"The result {g}^{e} (mod {p}) is: {resultat}")
-print(f"Execution time: {temps_total} seconds")
+if __name__=='__main__':
+    p = input_prime("Enter the value of p (prime): ")
+    g = input_in_zpz("Enter the value of g (in Z/pZ): ", p)
+    e = input_prime("Enter the value of e (prime): ")
+    
+    inici_temps2 = time.time()
+    resultat2 = fast_modular_exponentiation_update(g, e, p)
+    fi_temps2 = time.time()
+    temps_total2 = fi_temps2 - inici_temps2
+    print(f"The result2 {g}^{e} (mod {p}) is: {resultat2}")
+    print(f"Execution time2: {temps_total2} seconds")
+    
+    inici_temps = time.time()
+    resultat = fast_modular_exponentiation(g, e, p)
+    fi_temps = time.time()
+    temps_total = fi_temps - inici_temps
+    print(f"The result {g}^{e} (mod {p}) is: {resultat}")
+    print(f"Execution time: {temps_total} seconds")
 
