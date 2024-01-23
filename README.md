@@ -26,7 +26,7 @@ To execute Python codes from the command line:
        - Input the values of p (prime number) and g (supposed primitive root) when prompted.
      - ElGamal Encrypting Module
        - Run the **_Encrypt.py_** file.
-       - Input the values of p, g, gx (g^x where x is private key), and the UTF-8 text when prompted.
+       - Input the values of p, g, gx (g^x where x is private key), and the ASCII text when prompted.
 
          > **Warning:** It is necessary that _p_ be larger than 130. For example, the prime number 281.
 
@@ -34,7 +34,13 @@ To execute Python codes from the command line:
        - Run the **_Decrypt.py_** file.
        - Input the values of p, x (private key 1), y (private key 2), and the (c1, c2) pairs when prompted.
 
+     - Encryption and Decryption Module
+       - Run the **_Encrypt_Decrypt.py_** file.
+       - Input the values of p, g, x, the ASCII text, n (division group for encryption) when prompted.
+      
+         > **Warning:** In this case, the larger you make _n_, the larger the prime number _p_ will have to be.
+         > For example, if we have an n of 3, and the message to be encrypted is "~~~", the prime number has to be larger than 126126126.
 > [!TIP]
-> You can use the prime number p = 281 and its primitive root g = 3 to start.
+> You can use the prime number p = 82589933 and its primitive root g = 26 to start.
 
 Good luck! 
