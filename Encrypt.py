@@ -1,5 +1,16 @@
 import random
 
+def fast_modular_exponentiation_update(g, e, p):
+    result = 1
+    # Convert the exponent to binary
+    binary_e = bin(e)[2:]
+    # Iterate over the bits of the exponent (from right to left)
+    for bit in binary_e[::-1]:
+        if bit == '1':
+            result = (result * g) % p
+        g = (g * g) % p
+    return result
+
 def elgamal_encrypt(p, g, gx, text):
     # Convert the input text to a list of integers using ASCII values
     text2int = text_to_integer(text)
@@ -8,8 +19,8 @@ def elgamal_encrypt(p, g, gx, text):
     a = random.randint(1, p-1)
     
     # Calculate 'ga' (public key) and 'k' (shared secret key)
-    ga = pow(g, a, p)
-    k = pow(gx, a, p)
+    ga = fast_modular_exponentiation_update(g, a, p)
+    k = fast_modular_exponentiation_update(gx, a, p)
     
     result = []
     # Encrypt each integer in the input text using the shared secret key 'k'
