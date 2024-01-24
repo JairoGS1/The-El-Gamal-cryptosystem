@@ -1,10 +1,21 @@
 import random
 
+def fast_modular_exponentiation_update(g, e, p):
+    result = 1
+    # Convertir l'exponent a binari
+    binary_e = bin(e)[2:]
+    # Iterar sobre els bits de l'exponent (de dreta a esquerra)
+    for bit in binary_e[::-1]:
+        if bit == '1':
+            result = (result * g) % p
+        g = (g * g) % p
+    return result
+
 def Decrypt(p, x, ciphertext):
     # Unpack the ciphertext into 'ga' (public key) and 'cipher' (list of encrypted characters)
     ga, cipher = ciphertext
     # Calculate the shared secret key 'k' using the public key 'ga' and private key 'x'
-    k = pow(ga, x, p)
+    k = fast_modular_exponentiation_update(ga, x, p)
     # Calculate the modular inverse of 'k' (inv_k)
     inv_k = pow(k, -1, p)
     decrypted_char = []
