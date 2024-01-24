@@ -1,6 +1,7 @@
 import random
 import math
 from Primitive_root import is_prime, is_coprime, is_primitive_root, order_g, input_prime
+from FME_Algorithm import fast_modular_exponentiation_update
 
 # Function to check if a value can be converted to an integer
 def is_integer(value):
@@ -78,17 +79,17 @@ def generate_private_key(p):
 
 # Function to calculate the public key using modular exponentiation
 def calculate_public_key(g, x, p):
-    return pow(g, x, p)
+    return fast_modular_exponentiation_update(g, x, p)
 
 # Function to perform ElGamal encryption
 def elgamal_encrypt(p, g, x, a, text):
-    k = pow(pow(g,x,p), a, p)
+    k = fast_modular_exponentiation_update(fast_modular_exponentiation_update(g,x,p), a, p)
     c = (text * k) % p
     return ga, c
 
 # Function to perform ElGamal decryption
 def elgamal_decrypt(p, x, ga, c):
-    k = pow(ga, x, p)
+    k = fast_modular_exponentiation_update(ga, x, p)
     k_inverse = pow(k, -1, p)
     decrypted_message = (c * k_inverse) % p
     return decrypted_message
@@ -141,13 +142,11 @@ if __name__=='__main__':
     # Obtain the split string
     n = input_integer("Enter the value of n where n is the string length: ")
     text_list = group_list(plaintext, n)
-    print("Texto junto: ", text_list)
     
     # Encryption
     encrypted_values = encrypt_list(p, g, b, a, text_list)
 
     # Decryption
-    print("Valores encriptados: ", encrypted_values)
     decrypted_message = decrypt_list(p, b, ga, encrypted_values, n)
 
     # Output
