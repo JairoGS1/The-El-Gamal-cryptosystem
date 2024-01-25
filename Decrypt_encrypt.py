@@ -85,6 +85,7 @@ def calculate_public_key(g, x, p):
 def elgamal_encrypt(p, g, x, a, text):
     k = fast_modular_exponentiation_update(fast_modular_exponentiation_update(g,x,p), a, p)
     c = (text * k) % p
+    ga = calculate_public_key(g, a, p)
     return ga, c
 
 # Function to perform ElGamal decryption
